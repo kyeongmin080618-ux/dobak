@@ -7,6 +7,7 @@
   <title>한 번만 더? — 확률과 선택</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="wager.css" />
+  <link rel="stylesheet" href="systems.css" />
 </head>
 <body>
   <main class="shell">
@@ -22,6 +23,10 @@
       <div class="stat"><span>누적 결과</span><strong id="deltaStat">0 <small>개</small></strong></div>
       <div class="tokens" id="tokens" aria-label="게임머니 5개"></div>
     </section>
+    <section class="players-section" aria-label="참가자 현황">
+      <div class="players-heading"><div><div class="eyebrow">가상 참가자 테이블</div><h2>함께 플레이 중</h2></div><span>다른 참가자는 게임이 만든 시뮬레이션입니다</span></div>
+      <div class="player-grid" id="playerBoard"></div>
+    </section>
     <section id="gameArea">
       <div class="section-heading"><div><div class="eyebrow">주사위와 베팅액을 선택하세요</div><h2>이번 판의 선택</h2></div><div class="wager-picker"><span class="stake-note">베팅액</span><button class="stepper" id="wagerDown" aria-label="베팅액 1개 줄이기">−</button><label class="sr-only" for="wagerInput">베팅할 게임머니 개수</label><input id="wagerInput" type="number" min="1" max="5" value="1" inputmode="numeric"><button class="stepper" id="wagerUp" aria-label="베팅액 1개 늘리기">+</button><button class="all-in" id="allIn">전부</button></div></div>
       <div class="dice-grid" id="diceGrid"></div>
@@ -31,7 +36,8 @@
     <section class="end-panel hidden" id="endPanel"></section>
     <footer><span>가상 게임머니만 사용하는 교육용 게임입니다.</span><span>독립 시행에서 이전 결과는 다음 확률을 바꾸지 않아요.</span></footer>
   </main>
-  <dialog id="rulesDialog"><button class="close" id="closeRules" aria-label="닫기">×</button><div class="eyebrow">게임 안내</div><h2>규칙을 먼저 확인해요</h2><ul><li>게임머니 5개로 시작하고, 매 라운드 원하는 만큼 걸어요. 한 번에 보유량 전체를 걸 수도 있어요.</li><li>성공하면 건 금액에 해당 배수를 곱한 만큼 돌려받고, 실패하면 건 금액을 잃어요.</li><li>10라운드가 끝나거나 게임머니가 0개가 되면 게임이 끝나요.</li><li>배수는 총 회수액이에요. 예를 들어 2개를 걸고 ×3에 성공하면 총 6개를 받아 순증가는 4개예요.</li></ul><p class="fine-print">소박은 성공 시 원금만 돌아오고, 1면에서만 잃습니다. 기대 회수액은 베팅 1개당 소박 0.83개, 중박 1.50개, 대박 0.83개예요. 기대값은 장기 평균이며 한 판의 결과를 보장하지 않아요.</p></dialog>
+  <dialog id="rulesDialog"><button class="close" id="closeRules" aria-label="닫기">×</button><div class="eyebrow">게임 안내</div><h2>규칙을 먼저 확인해요</h2><ul><li>게임머니 5개로 시작하고, 매 라운드 원하는 만큼 걸어요. 한 번에 보유량 전체를 걸 수도 있어요.</li><li>성공하면 건 금액에 해당 배수를 곱한 만큼 돌려받고, 실패하면 건 금액을 잃어요.</li><li>돈이 바닥나면 은행에서 빌리거나 게임을 멈출 수 있어요. 신용이 낮아지면 고금리 사금융 제안과 파산 선택이 나타나요.</li><li>10라운드가 끝나면 빚과 신용을 포함해 결과를 돌아봐요.</li><li>배수는 총 회수액이에요. 예를 들어 2개를 걸고 ×3에 성공하면 총 6개를 받아 순증가는 4개예요.</li></ul><p class="fine-print">다른 참가자 세 명은 전략이 다른 가상 시뮬레이션입니다. 소박은 성공 시 원금만 돌아오고, 1면에서만 잃습니다. 기대 회수액은 베팅 1개당 소박 0.83개, 중박 1.50개, 대박 0.83개예요. 기대값은 장기 평균이며 한 판의 결과를 보장하지 않아요.</p></dialog>
+  <dialog id="creditDialog" class="credit-dialog"></dialog>
   <script src="game.js"></script>
 </body>
 </html>
