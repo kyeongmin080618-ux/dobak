@@ -8,10 +8,11 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="wager.css" />
   <link rel="stylesheet" href="systems.css" />
+  <link rel="stylesheet" href="bank.css" />
 </head>
 <body>
   <main class="shell">
-    <header class="top"><div class="brand"><span class="brand-mark">◎</span> 플레이 랩 <span class="tag">교육용 시뮬레이션</span></div><button class="text-button" id="rulesBtn">게임 안내</button></header>
+    <header class="top"><div class="brand"><span class="brand-mark">◎</span> 플레이 랩 <span class="tag">교육용 시뮬레이션</span></div><div class="top-actions"><button class="bank-button" id="bankBtn">▤ 은행</button><button class="text-button" id="rulesBtn">게임 안내</button></div></header>
     <section class="hero">
       <div class="eyebrow">확률 · 보상 · 손실</div>
       <h1>한 번만 더<span>?</span></h1>
@@ -36,7 +37,7 @@
     <section class="end-panel hidden" id="endPanel"></section>
     <footer><span>가상 게임머니만 사용하는 교육용 게임입니다.</span><span>독립 시행에서 이전 결과는 다음 확률을 바꾸지 않아요.</span></footer>
   </main>
-  <dialog id="rulesDialog"><button class="close" id="closeRules" aria-label="닫기">×</button><div class="eyebrow">게임 안내</div><h2>규칙을 먼저 확인해요</h2><ul><li>게임머니 5개로 시작하고, 매 라운드 원하는 만큼 걸어요. 한 번에 보유량 전체를 걸 수도 있어요.</li><li>성공하면 건 금액에 해당 배수를 곱한 만큼 돌려받고, 실패하면 건 금액을 잃어요.</li><li>돈이 바닥나면 은행에서 빌리거나 게임을 멈출 수 있어요. 신용이 낮아지면 고금리 사금융 제안과 파산 선택이 나타나요.</li><li>10라운드가 끝나면 빚과 신용을 포함해 결과를 돌아봐요.</li><li>배수는 총 회수액이에요. 예를 들어 2개를 걸고 ×3에 성공하면 총 6개를 받아 순증가는 4개예요.</li></ul><p class="fine-print">다른 참가자 세 명은 전략이 다른 가상 시뮬레이션입니다. 소박은 성공 시 원금만 돌아오고, 1면에서만 잃습니다. 기대 회수액은 베팅 1개당 소박 0.83개, 중박 1.50개, 대박 0.83개예요. 기대값은 장기 평균이며 한 판의 결과를 보장하지 않아요.</p></dialog>
+  <dialog id="rulesDialog"><button class="close" id="closeRules" aria-label="닫기">×</button><div class="eyebrow">게임 안내</div><h2>규칙을 먼저 확인해요</h2><ul><li>게임머니 5개로 시작하고, 매 라운드 원하는 만큼 걸어요. 한 번에 보유량 전체를 걸 수도 있어요.</li><li>성공하면 건 금액에 해당 배수를 곱한 만큼 돌려받고, 실패하면 건 금액을 잃어요.</li><li>은행 버튼에서 신용 점수별 한도, 일반 대출, 가상 신용카드와 단기·장기 카드대출을 확인할 수 있어요.</li><li>신용과 현금이 바닥나면 사금융 제안, 연체에 따른 이자·한도 축소·독촉, 파산 선택이 나타나요. 사금융 연이율은 3,479%로 설정했습니다.</li><li>10라운드가 끝나면 빚과 신용을 포함해 결과를 돌아봐요.</li><li>배수는 총 회수액이에요. 예를 들어 2개를 걸고 ×3에 성공하면 총 6개를 받아 순증가는 4개예요.</li></ul><p class="fine-print">다른 참가자 세 명은 가상 시뮬레이션입니다. 게임머니, 카드, PIN은 가상이며 실제 정보는 입력하지 마세요. 소박 주사위 기대 회수액은 베팅 1개당 0.83개, 중박은 1.50개, 대박은 0.83개예요. 기대값은 장기 평균이며 한 판의 결과를 보장하지 않아요.</p></dialog>
   <dialog id="creditDialog" class="credit-dialog"></dialog>
   <script src="game.js"></script>
 </body>
