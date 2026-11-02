@@ -1,14 +1,14 @@
 const dice=[
- {id:'safe',name:'소박 주사위',win:[2,3,4,5,6],mult:1,ev:'0.83',faces:'1면 −1 · 2–6면 ×1'},
- {id:'mid',name:'중박 주사위',win:[4,5,6],mult:3,ev:'1.50',faces:'1–3면 꽝 · 4–6면 ×3'},
- {id:'big',name:'대박 주사위',win:[6],mult:5,ev:'0.83',faces:'1–5면 꽝 · 6면 ×5'}
+ {id:'safe',name:'소박 주사위',color:'gray',win:[4,5,6],mult:1,chance:'50.0%',ev:'0.00',faces:'1–3면 −1 · 4–6면 ×1'},
+ {id:'mid',name:'중박 주사위',color:'orange',win:[5,6],mult:3,chance:'33.3%',ev:'1.00',faces:'1–4면 꽝 · 5–6면 ×3'},
+ {id:'big',name:'대박 주사위',color:'red',win:[6],mult:5,chance:'16.6%',ev:'0.83',faces:'1–5면 꽝 · 6면 ×5'}
 ];
 const roundLimit=10,$=id=>document.getElementById(id);
 const makePlayer=(id,name,style,bot=false)=>({id,name,style,bot,money:5,eliminated:false,counts:{safe:0,mid:0,big:0}});
 let players=[],round=1,wager=1,selected=null,locked=false,history=[];
 function resetPlayers(){players=[makePlayer('you','나','직접 선택'),makePlayer('jihoo','지후','안전형',true),makePlayer('minseo','민서','한방형',true),makePlayer('doyun','도윤','만회 추구형',true)]}
 const me=()=>players[0];
-function renderCards(){ $('diceGrid').innerHTML=dice.map(d=>`<article class="dice-card ${selected===d.id?'selected':''}" data-id="${d.id}" role="button" tabindex="0" aria-pressed="${selected===d.id}"><div class="card-head"><h3>${d.name}</h3><span class="mini-die"><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div><div class="prob">${d.win.length}/6 <small>성공 확률</small></div><div class="card-foot"><span>${d.faces}</span><strong>기대 회수 ${d.ev}</strong></div></article>`).join('');document.querySelectorAll('.dice-card').forEach(el=>{el.onclick=()=>select(el.dataset.id);el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(el.dataset.id)}}}) }
+function renderCards(){ $('diceGrid').innerHTML=dice.map(d=>`<article class="dice-card die-${d.color} ${selected===d.id?'selected':''}" data-id="${d.id}" role="button" tabindex="0" aria-pressed="${selected===d.id}"><div class="card-head"><h3>${d.name}</h3><span class="mini-die"><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div><div class="prob">${d.win.length}/6 <small>· ${d.chance} 성공</small></div><div class="card-foot"><span>${d.faces}</span><strong>제시 기대값 ${d.ev}</strong></div></article>`).join('');document.querySelectorAll('.dice-card').forEach(el=>{el.onclick=()=>select(el.dataset.id);el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(el.dataset.id)}}}) }
 function select(id){if(locked||me().money<1)return;selected=id;renderCards();$('rollBtn').disabled=false;const d=dice.find(x=>x.id===id);$('rollTitle').textContent=`${d.name}을(를) 골랐어요`;$('rollMessage').textContent=`${wager}개를 걸어요. ${d.faces}. 준비되면 굴려보세요.`}
 function setWager(value){if(locked||me().money<1)return;const parsed=Number.parseInt(value,10);wager=Math.max(1,Math.min(me().money,Number.isFinite(parsed)?parsed:1));$('wagerInput').value=wager;syncWager();if(selected){const d=dice.find(x=>x.id===selected);$('rollMessage').textContent=`${wager}개를 걸어요. ${d.faces}. 준비되면 굴려보세요.`}}
 function syncWager(){const p=me(),input=$('wagerInput');wager=Math.min(Math.max(1,wager),Math.max(1,p.money));input.min=p.money>0?1:0;input.max=p.money;input.value=wager;$('wagerDown').disabled=locked||wager<=1;$('wagerUp').disabled=locked||wager>=p.money;$('allIn').disabled=locked||wager===p.money;input.disabled=locked||p.money===0}
