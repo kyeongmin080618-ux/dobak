@@ -1,2 +1,3 @@
 .player-card.eliminated{opacity:.62}
+.dice-card.die-red h3,.dice-card.die-red .prob{color:#ff786e}.dice-card.die-orange h3,.dice-card.die-orange .prob{color:#ffab54}.dice-card.die-gray h3,.dice-card.die-gray .prob{color:#b6c0ca}.dice-card.die-red.selected{border-color:#ff786e;box-shadow:0 0 0 1px #ff786e inset;background:#30272a}.dice-card.die-orange.selected{border-color:#ffab54;box-shadow:0 0 0 1px #ffab54 inset;background:#312d26}.dice-card.die-gray.selected{border-color:#aeb9c4;box-shadow:0 0 0 1px #aeb9c4 inset;background:#28313a}
 
